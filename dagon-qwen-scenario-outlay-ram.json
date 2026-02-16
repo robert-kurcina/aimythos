@@ -1,0 +1,184 @@
+{
+  "story_config": {
+    "title": "The Keeper at Ram Island",
+    "version": "1.0",
+    "setting": {
+      "time_period": "Late Prohibition Era (August 1926 – March 1927)",
+      "date_range": "August 28, 1926 – March 20, 1927 (Spring Equinox)",
+      "location": "Ram Island, Maine (private 12-acre island at critical Boothbay channel junction)",
+      "historical_context": "Post-WWI isolation therapy trend; lighthouse automation beginning but remote stations still manned; coastal communities maintain tight-knit secrecy",
+      "atmosphere": "Solitude curdling into ontological dread; horror manifests through bodily betrayal rather than external threat"
+    },
+    "protagonist": {
+      "role": "Lighthouse keeper (appointed Spring Equinox 1926)",
+      "background": "WWI veteran (Marne campaign); orphaned when parents 'disappeared' 1920; uncle arranged keeper position as therapeutic isolation",
+      "weakness": "Unrecognized hybrid physiology (Stage 1 transformation); saltwater cravings mistaken for shell shock symptom",
+      "assets": "Uncle's trust, Winchester shotgun (12-gauge, 20 shells monthly resupply), meticulous logbook habit, lighthouse optics knowledge",
+      "starting_inventory": [
+        "Keeper's logbook (August entries pristine)",
+        "Winchester Model 1897 shotgun (2 shells loaded)",
+        "Oil lamp (full reservoir)",
+        "Brass telescope (marine-grade)",
+        "$17.50 cash",
+        "Uncle's farewell letter (mentions 'family resilience in solitude')",
+        "WWI dog tags (tarnished)"
+      ],
+      "default_attributes": {
+        "Prowess": 2,
+        "Physicality": 2,
+        "Tactics": 3,
+        "Willpower": 2,
+        "Persuasion": 1,
+        "Investigation": 3,
+        "Wealth": 1
+      },
+      "default_traits": {
+        "disabilities": ["PTSD", "Unaware"],
+        "talents": ["Tenacious"],
+        "skills": ["Veteran", "Observant"]
+      }
+    },
+    "antagonists": {
+      "primary_threat": "Inherited Deep One bloodline (protagonist's own physiology)",
+      "hybrid_characteristics": [
+        "Progressive saltwater dependency (freshwater causes cellular distress)",
+        "Webbing develops between fingers/toes during sleep cycles",
+        "Gill slits form beneath jawline triggered by prolonged submersion",
+        "Sub-audible vocal resonance matching tidal frequencies",
+        "Dream-state navigation of underwater topography"
+      ],
+      "transformation_mechanics": {
+        "vector": "Inherited bloodline activation accelerated by coral-egg ingestion (late November)",
+        "stages": [
+          "Stage 1: Salt cravings intensify; dreams of deep water (August–October)",
+          "Stage 2: Skin develops crystalline salt deposits; aversion to freshwater immersion (November–December)",
+          "Stage 3: Gill slits visible during stress; compulsive tide-watching (January–February)",
+          "Stage 4: Consciousness merges with tidal rhythms; rejection of human identity (March)"
+        ],
+        "containment": "Complete isolation from saltwater + freshwater immersion may arrest progression but cannot reverse Stage 3+ changes; protagonist lacks knowledge to attempt"
+      },
+      "key_npcs": [
+        {
+          "name": "Matteo",
+          "role": "Local farmer (weekly visitor)",
+          "secret": "Cult liaison delivering coral-egg in late November fruit basket; monitors transformation progress",
+          "motivation": "Ensure bloodline continuity; prevent keeper suicide before full transformation",
+          "attributes": {"Prowess":2, "Physicality":3, "Tactics":2, "Willpower":3, "Persuasion":4, "Investigation":1, "Wealth":2},
+          "traits": {"disabilities": ["Compromised"], "skills": ["Hospitality"]}
+        },
+        {
+          "name": "Uncle Alistair",
+          "role": "Former lightkeeper (protagonist's guardian)",
+          "secret": "Stage 2 hybrid who avoided full transformation through strict freshwater discipline; arranged isolation to hide nephew's bloodline",
+          "motivation": "Protect family legacy while avoiding cult's forced transformation ritual",
+          "attributes": {"Prowess":2, "Physicality":2, "Tactics":4, "Willpower":5, "Persuasion":4, "Investigation":3, "Wealth":3},
+          "traits": {"disabilities": ["Grieving"], "skills": ["Cultist"]}
+        },
+        {
+          "name": "Fisherman",
+          "role": "Weekly skiff operator",
+          "secret": "Stage 3 hybrid conducting surveillance; reports keeper status to offshore nest",
+          "motivation": "Ensure bloodline activation proceeds without interference",
+          "attributes": {"Prowess":3, "Physicality":3, "Tactics":3, "Willpower":4, "Persuasion":2, "Investigation":2, "Wealth":1},
+          "traits": {"disabilities": ["Transforming"], "skills": ["Survivalist"]}
+        },
+        {
+          "name": "Lighthouse Tender Crew",
+          "role": "Monthly supply deliverers",
+          "secret": "Unaware of supernatural elements; view Ram Island as notoriously isolated posting",
+          "motivation": "Complete delivery schedule without delay; avoid keeper interaction",
+          "attributes": {"Prowess":2, "Physicality":2, "Tactics":2, "Willpower":2, "Persuasion":2, "Investigation":1, "Wealth":2},
+          "traits": {"disabilities": ["Oblivious"]}
+        }
+      ]
+    },
+    "locations": [
+      {
+        "name": "Lighthouse Tower",
+        "features": "90-foot granite structure; Fresnel lens requiring weekly polishing; salt-caked windows facing southeast",
+        "dangers": "Vertigo intensifies after Stage 2; reflections in lens show distorted self-image"
+      },
+      {
+        "name": "Keeper's Cottage",
+        "features": "Two bedrooms with brass bedframes; bathroom mirror showing progressive physical changes; uncle's hidden journal beneath floorboard",
+        "dangers": "Freshwater well contaminated by November; salt crystals forming on bedding"
+      },
+      {
+        "name": "Rampart Landing",
+        "features": "200-foot wharf with rusted cleats; Matteo's weekly fruit basket placement point",
+        "dangers": "Tidal pool contains coral-egg November 26; saltwater immersion accelerates transformation"
+      },
+      {
+        "name": "Sheep Barn",
+        "features": "Segregated ram pens with salt-lick blocks; wool piled for winter insulation",
+        "dangers": "Rams exhibit compulsive tide-facing behavior; wool absorbs salt aerosols"
+      },
+      {
+        "name": "Southeast Shoreline",
+        "features": "Rocky cove with underwater passage visible at extreme low tide",
+        "dangers": "Deep One nest 3 miles offshore; nightly trespassers leave bioluminescent footprints"
+      },
+      {
+        "name": "Storage Warehouse",
+        "features": "Kerosene drums, shotgun shell crates, uncle's emergency radio (non-functional)",
+        "dangers": "Coral-egg hidden in November fruit delivery; radio repair requires parts not in inventory"
+      }
+    ],
+    "ecological_corruption": {
+      "water_vectors": [
+        "Well water develops brine taste November 15 (undetectable without Survivalist skill)",
+        "Tidal pools pulse with violet bioluminescence during trespasser visits",
+        "Rainwater collected in barrels remains pure but insufficient for daily needs after December"
+      ],
+      "terrestrial_signs": [
+        "Sheep wool develops salt-crystal sheen matching keeper's skin deposits",
+        "Pine needles on island arrange in non-Euclidean spirals after November storms",
+        "Keeper's footprints leave faint bioluminescent residue after Stage 2"
+      ],
+      "containment_zones": [
+        "Rainwater barrel (roof-collected, covered)",
+        "Lighthouse lens chamber (sealed environment, copper fittings)",
+        "Uncle's hidden journal location (freshwater-soaked cloth wrapping)"
+      ]
+    },
+    "narrative_arc": {
+      "turn_1_5": "Solitude phase: establish routine, notice subtle anomalies (salt cravings, vivid dreams), first trespasser encounter (distant singing)",
+      "turn_6_10": "Dissonance phase: physical changes observed in mirror reflections, Matteo's November visit with coral-egg delivery, accelerated transformation begins",
+      "turn_11_15": "Crisis phase: recognize hybrid nature through uncle's journal discovery, confront trespassers or flee into isolation",
+      "turn_16_20": "Reckoning phase: irreversible choice between suicide (Self Preserved), violence against nest (Horror Contained), or documentation (Truth Preserved)"
+    },
+    "victory_conditions": {
+      "optimal_path": [
+        "Turn 4: Document trespasser patterns without confronting them",
+        "Turn 9: Resist eating coral-egg by discarding fruit basket immediately",
+        "Turn 13: Discover uncle's journal revealing bloodline truth",
+        "Turn 17: Secure rainwater supply before well contamination peaks",
+        "Turn 20: Complete ledger with evidence of bloodline inheritance and cult network"
+      ],
+      "maximum_scores": {
+        "Truth Preserved": 6.4,
+        "Self Preserved": 5.1,
+        "Horror Contained": 3.8
+      }
+    },
+    "defeat_conditions": {
+      "critical_errors": [
+        "Consuming coral-egg without immediate freshwater purge (Turn 9)",
+        "Confronting trespassers with violence before Stage 3 (Turns 11-14)",
+        "Destroying logbook during moments of despair (any turn after 12)",
+        "Attempting escape via tender ship without evidence preparation (Turns 18-20)"
+      ],
+      "minimum_scores": {
+        "Truth Preserved": 0.9,
+        "Self Preserved": 0.6,
+        "Horror Contained": 0.3
+      }
+    },
+    "unique_mechanics": {
+      "isolation_penalty": "No Persuasion Tests possible except during scheduled visits (Turns 4, 8, 12, 16, 20); failed Tests with Matteo trigger immediate coral-egg delivery",
+      "transformation_clock": "Stage advancement automatic at Turns 5/10/15/20 unless freshwater immersion achieved; each stage imposes -1 cumulative DM to Willpower Tests",
+      "ledger_integrity": "Logbook entries after Turn 12 automatically preserve Truth metric baseline (2.1 minimum) even if destroyed later",
+      "suicide_mechanic": "Single Willpower Test TN 13 at Turn 20 determines success of self-termination; failure results in Stage 4 transformation with 0.4 Self Preserved score"
+    }
+  }
+}

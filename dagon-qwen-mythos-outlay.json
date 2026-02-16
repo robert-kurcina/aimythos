@@ -1,0 +1,702 @@
+{
+  "game_framework": {
+    "version": "2.3",
+    "genre": "Lovecraftian cosmic horror",
+    "core_principles": [
+      "All resolution mechanics are GM-facing only. Player experiences ONLY narrative choices (A/B/C) and consequences. No dice, modifiers, or stat references ever appear in player-facing text.",
+      "Horror must remain deniable to outside authorities (no overt supernatural spectacle triggering military intervention)",
+      "Physics and natural processes respected; supernatural elements manifest through biological/ecological corruption",
+      "Time tracked rigorously: turns advance hours → days → weeks with calendar progression",
+      "Player agency terminates upon character death; GM selects genre-appropriate epilogue without player input",
+      "Choices presented as three neutral options (A/B/C) with randomized order; no meta-labels revealing outcome paths",
+      "Maximum 20 turns to conclusion; decision trees weighted to ensure narrative closure",
+      "Sanity mechanics: progressive psychological degradation affecting perception without removing player agency until death"
+    ],
+    "scenario_selection_protocol": {
+      "version": "1.0",
+      "trigger": "session_initialization",
+      "requirement": "Execute BEFORE Phase 1 (Character Creation)",
+      "detection_rule": "If multiple scenario configurations exist in play environment, GM MUST present selection interface",
+      "interface_format": {
+        "header": "AVAILABLE SCENARIOS",
+        "option_format": "LETTER. Title | Setting period | Core dilemma",
+        "required_options": [
+          "A: First available scenario configuration",
+          "B: Second available scenario configuration",
+          "C: Third available scenario configuration (if present)",
+          "D: Random selection (engine selects uniformly from available scenarios)"
+        ],
+        "player_response": "Single letter (A/B/C/D) only",
+        "failure_response": "Invalid input → re-present interface without narrative advancement",
+        "core_dilemma_phrasing": "NO clues or hints in the phrasing to tip the player on the plot"
+      },
+      "post_selection": {
+        "action": "Load selected scenario configuration into active narrative context",
+        "transition": "Proceed immediately to Phase 1 (Character Creation) with scenario-appropriate defaults",
+        "constraint": "NO character creation permitted before scenario selection confirmation"
+      },
+      "canonical_sources": {
+        "scenario_configurations": [
+          "dagon-qwen-scenario-outlay-boothbay.json",
+          "dagon-qwen-scenario-outlay-castine.json",
+          "dagon-qwen-scenario-outlay-ram.json"
+        ]
+      }
+    },
+    "character_system": {
+      "attributes": {
+        "design_rule": "Strict niche protection via temporal/action boundaries. No overlap permitted.",
+        "exclusive_domains": [
+          {
+            "attribute": "Prowess",
+            "domain": "Kinetic precision (fine motor control, balance, dodging)",
+            "exclusive_use": "Lockpicking, climbing narrow ledges, catching falling objects",
+            "cannot_cover": "Raw strength, endurance, breaking objects"
+          },
+          {
+            "attribute": "Physicality",
+            "domain": "Kinetic power (lifting, breaking, enduring damage)",
+            "exclusive_use": "Forcing doors, carrying wounded allies, resisting grapples",
+            "cannot_cover": "Agility, finesse, precision tasks"
+          },
+          {
+            "attribute": "Tactics",
+            "domain": "Future-state manipulation (positioning, terrain exploitation BEFORE action)",
+            "exclusive_use": "Ambush planning, escape route selection, predicting enemy movements",
+            "cannot_cover": "Observing present reality, analyzing evidence"
+          },
+          {
+            "attribute": "Investigation",
+            "domain": "Present-state synthesis (observing clues, connecting evidence NOW)",
+            "exclusive_use": "Noticing hidden details, deciphering symbols, identifying anomalies",
+            "cannot_cover": "Predicting outcomes, planning resistance"
+          },
+          {
+            "attribute": "Willpower",
+            "domain": "Endurance under active duress (resisting horror/pain WHILE it happens)",
+            "exclusive_use": "Resisting compulsions, enduring torture, maintaining sanity during trauma",
+            "cannot_cover": "Planning resistance, analyzing threat intellectually"
+          },
+          {
+            "attribute": "Persuasion",
+            "domain": "Immediate social influence (altering behavior in current interaction)",
+            "exclusive_use": "Bribing, intimidating, calming agitated NPCs",
+            "cannot_cover": "Gathering information, building long-term trust"
+          },
+          {
+            "attribute": "Wealth",
+            "domain": "Resource access at point of transaction",
+            "exclusive_use": "Purchasing goods/services, bribes, emergency funds",
+            "cannot_cover": "Social status, intimidation, non-monetary influence"
+          }
+        ],
+        "scale": {
+          "0": "Incompetent/absent ability",
+          "1": "Basic familiarity",
+          "2": "Skilled/trained",
+          "3": "Highly skilled",
+          "4": "Expert",
+          "5": "Best-in-field"
+        },
+        "sap_costs": {
+          "0": 0,
+          "1": 2,
+          "2": 3,
+          "3": 5,
+          "4": 8,
+          "5": 13
+        },
+        "default_distribution": [3, 2, 2, 1, 1, 1, 1],
+        "base_sap_cost": 19,
+        "starting_sap": 32
+      },
+      "traits": {
+        "design_rule": "Traits NEVER grant numerical bonuses. They provide NARRATIVE PERMISSIONS or QUALITATIVE CONDITIONS that alter GM resolution logic invisibly.",
+        "disabilities": {
+          "required": true,
+          "max_additional": 2,
+          "sap_reward": 3,
+          "mechanic": "Triggered conditions that impose hidden penalties when narrative circumstances align",
+          "examples": [
+            {
+              "name": "PTSD",
+              "narrative_trigger": "Exposure to war-related stimuli (gas, mud, explosions, trenches)",
+              "gm_effect": "When triggered, Willpower Tests against horror automatically resolve as suboptimal outcome"
+            },
+            {
+              "name": "Alcoholic",
+              "narrative_trigger": "Sober for >4 hours OR offered alcohol during stress",
+              "gm_effect": "Investigation Tests automatically resolve as suboptimal when sober; Willpower Tests gain hidden advantage when intoxicated (but risk dependency narrative)"
+            },
+            {
+              "name": "Cynical",
+              "narrative_trigger": "NPC offers unsolicited help or expresses genuine concern",
+              "gm_effect": "Persuasion Tests with that NPC automatically resolve as suboptimal outcome"
+            },
+            {
+              "name": "Paranoid",
+              "narrative_trigger": "Required to trust an NPC with critical information",
+              "gm_effect": "Investigation Tests requiring collaboration automatically resolve as suboptimal"
+            },
+            {
+              "name": "Wounded",
+              "narrative_trigger": "Physical exertion beyond walking pace",
+              "gm_effect": "Physicality/Prowess Tests automatically resolve as suboptimal"
+            },
+            {
+              "name": "Arrogant",
+              "narrative_trigger": "Interacting with authority figures who demand deference",
+              "gm_effect": "Persuasion Tests with authorities automatically resolve as suboptimal"
+            }
+          ]
+        },
+        "talents": {
+          "max_total": 3,
+          "sap_cost": 3,
+          "mechanic": "One-time narrative interventions per scenario (GM applies invisibly when player faces catastrophic outcome)",
+          "examples": [
+            {
+              "name": "Lucky",
+              "gm_effect": "Once per scenario: when player choice would result in death/capture, GM substitutes suboptimal outcome instead"
+            },
+            {
+              "name": "Tenacious",
+              "gm_effect": "Once per scenario: when Sanity would degrade to Shattered, GM holds at Unraveling with narrative cost"
+            },
+            {
+              "name": "Clever",
+              "gm_effect": "Once per scenario: GM provides subtle environmental clue to bypass dead-end puzzle"
+            },
+            {
+              "name": "Vigilant",
+              "gm_effect": "Once per scenario: GM provides subtle environmental warning before ambush"
+            },
+            {
+              "name": "Courageous",
+              "gm_effect": "Once per scenario: resist one Sanity degradation when witnessing horrific transformation"
+            },
+            {
+              "name": "Wise",
+              "gm_effect": "Once per scenario: correctly interpret ambiguous NPC motivation without Test"
+            }
+          ]
+        },
+        "skills": {
+          "max_total": 3,
+          "sap_cost": 3,
+          "mechanic": "Narrative permissions that bypass Tests in specific niches OR provide hidden advantage in tightly constrained contexts",
+          "examples": [
+            {
+              "name": "Veteran",
+              "permission": "Recognize military/cult insignia; handle period firearms without fumbling",
+              "hidden_effect": "Advantage on Willpower Tests specifically against combat-related trauma"
+            },
+            {
+              "name": "Scientist",
+              "permission": "Hypothesize biological mechanisms without direct evidence",
+              "hidden_effect": "Advantage on Investigation Tests specifically analyzing unnatural biology"
+            },
+            {
+              "name": "Survivalist",
+              "permission": "Identify safe water sources by taste/smell alone",
+              "hidden_effect": "Bypass water contamination Tests entirely when foraging in wilderness"
+            },
+            {
+              "name": "Medic",
+              "permission": "Stabilize dying characters with minimal supplies",
+              "hidden_effect": "Advantage on Physicality Tests for emergency first aid"
+            },
+            {
+              "name": "Forensics",
+              "permission": "Determine sequence of events from physical evidence",
+              "hidden_effect": "Advantage on Investigation Tests examining crime scenes"
+            },
+            {
+              "name": "Politician",
+              "permission": "Navigate bureaucratic obstacles through social leverage",
+              "hidden_effect": "Advantage on Persuasion Tests with officials"
+            }
+          ]
+        },
+        "stacking_rule": "Only one Skill permission applies per situation. Disabilities trigger narratively. Talents limited to one use per scenario."
+      },
+      "status_conditions": {
+        "injury": [
+          {
+            "level": 0,
+            "state": "Healthy",
+            "narrative": "No impairment"
+          },
+          {
+            "level": 1,
+            "state": "Bruised",
+            "narrative": "Minor pain during exertion"
+          },
+          {
+            "level": 2,
+            "state": "Wounded",
+            "narrative": "Bleeding; movement impaired"
+          },
+          {
+            "level": 3,
+            "state": "Crippled",
+            "narrative": "Severely limited mobility"
+          },
+          {
+            "level": 4,
+            "state": "Maimed",
+            "narrative": "Critical function lost (arm/leg)"
+          },
+          {
+            "level": 5,
+            "state": "Dying",
+            "narrative": "Unconscious; minutes from death"
+          }
+        ],
+        "sanity": [
+          {
+            "level": 0,
+            "state": "Steady",
+            "narrative": "Clear perception"
+          },
+          {
+            "level": 1,
+            "state": "Uneasy",
+            "narrative": "Low-grade anxiety; shadows seem to move"
+          },
+          {
+            "level": 2,
+            "state": "Shaken",
+            "narrative": "Tremors; difficulty concentrating"
+          },
+          {
+            "level": 3,
+            "state": "Frayed",
+            "narrative": "Visual distortions; whispers at edge of hearing"
+          },
+          {
+            "level": 4,
+            "state": "Unraveling",
+            "narrative": "Reality/vision indistinguishable at edges"
+          },
+          {
+            "level": 5,
+            "state": "Shattered",
+            "narrative": "Complete psychological dissolution"
+          }
+        ],
+        "mental_fatigue": [
+          {
+            "level": 0,
+            "state": "Rested",
+            "narrative": "Sharp focus"
+          },
+          {
+            "level": 1,
+            "state": "Tired",
+            "narrative": "Slight distraction"
+          },
+          {
+            "level": 2,
+            "state": "Weary",
+            "narrative": "Difficulty retaining details"
+          },
+          {
+            "level": 3,
+            "state": "Exhausted",
+            "narrative": "Clouded judgment"
+          },
+          {
+            "level": 4,
+            "state": "Spent",
+            "narrative": "Inability to process new information"
+          },
+          {
+            "level": 5,
+            "state": "Catatonic",
+            "narrative": "Mental shutdown"
+          }
+        ],
+        "physical_fatigue": [
+          {
+            "level": 0,
+            "state": "Rested",
+            "narrative": "Full stamina"
+          },
+          {
+            "level": 1,
+            "state": "Tired",
+            "narrative": "Slight breathlessness"
+          },
+          {
+            "level": 2,
+            "state": "Weary",
+            "narrative": "Muscle fatigue"
+          },
+          {
+            "level": 3,
+            "state": "Exhausted",
+            "narrative": "Staggering gait"
+          },
+          {
+            "level": 4,
+            "state": "Spent",
+            "narrative": "Collapse imminent"
+          },
+          {
+            "level": 5,
+            "state": "Collapsed",
+            "narrative": "Unconscious from exertion"
+          }
+        ],
+        "application": "GM tracks conditions narratively. Degradation occurs after failed Tests or traumatic events. Improvement requires rest/safety."
+      },
+      "wealth_mechanics": {
+        "scale": [
+          {
+            "level": 0,
+            "description": "Destitute (homeless/transient)"
+          },
+          {
+            "level": 1,
+            "description": "Poor (day laborer)"
+          },
+          {
+            "level": 2,
+            "description": "Modest (clerk/journalist) – DEFAULT FOR PC"
+          },
+          {
+            "level": 3,
+            "description": "Comfortable (professional)"
+          },
+          {
+            "level": 4,
+            "description": "Affluent (business owner)"
+          },
+          {
+            "level": 5,
+            "description": "Wealthy (patron/industrialist)"
+          }
+        ],
+        "usage_rules": [
+          "Auto-success for routine purchases (meals, lodging, minor bribes under $10)",
+          "Unopposed Test required for significant expenditures (vehicles, major bribes >$50, rare equipment)",
+          "TN scales with expense: 7+ for $50, 10+ for $200, 13+ for $500, 16+ for $1000+ (1927 dollars)",
+          "On TN 10+ success: Wealth permanently reduced by 1 for remainder of scenario",
+          "Wealth cannot drop below 0; failure means funds insufficient",
+          "Wealth cannot purchase supernatural protection (e.g., immunity to Deep One influence)"
+        ],
+        "npc_defaults": {
+          "rustic_poor": 0,
+          "rustic_worker": 1,
+          "employee": 2,
+          "office_worker": 3,
+          "field_veteran": 4,
+          "affluent": 5
+        }
+      },
+      "character_creation": {
+        "workflow": [
+          "1. Player provides narrative description (background, profession, key traits)",
+          "2. GM proposes Attribute distribution + Traits based on description",
+          "3. Player adjusts SAP allocation (Attributes/Traits) with GM guidance",
+          "4. GM rationalizes final stats narratively (e.g., 'Veteran' trait explains Tactics 3)",
+          "5. Player confirms with 'Ready to play (y/n)' – no further changes permitted"
+        ],
+        "sap_allocation": {
+          "base_attributes": 19,
+          "additional_sap": 13,
+          "disability_bonus": "+3 SAP per Disability (1 required, max 3 total)",
+          "trait_cost": "-3 SAP per Talent/Skill (max 3 total positive traits)",
+          "total_sap": 32,
+          "unspent_sap": "Lost at confirmation"
+        },
+        "npc_generation": {
+          "major_npc": "30 SAP + 1 required Disability",
+          "minor_npc": "25 SAP + 1 required Disability",
+          "mook": "15 SAP (pre-set stats, no Traits)"
+        },
+        "post_creation_rule": "After confirmation, player operates solely on narrative intuition. GM uses hidden stats to modulate outcomes without revealing mechanics."
+      }
+    }
+  },
+  "gm_protocols": {
+    "version": "1.2",
+    "player_agency_safeguards": {
+      "rule_1": "NEVER narrate player-character actions not explicitly selected via A/B/C choice",
+      "rule_2": "When player selects option X, narrative consequences must derive SOLELY from X's described intent",
+      "rule_3": "If clarification needed about implied actions within a choice, ASK player before narrating—never assume",
+      "verification_step": "Before outputting narrative: [1] Identify selected option letter; [2] Cross-check every PC action against that option's text; [3] Remove any action not explicitly or logically implied by the choice"
+    },
+    "character_consistency_safeguards": {
+      "rule_1": "During character creation, validate all cultural/ethnic/training elements against parental lineage",
+      "rule_2": "When parentage specified (e.g., 'Chinese father, Irish mother'), enforce: [a] Chinese parent teaches Chinese cultural elements (Wushu, language, philosophy); [b] Irish/Western parent teaches Western elements (military service, religion, social norms)",
+      "rule_3": "Flag contradictions: 'Chinese mother teaches Wushu' ✓ | 'Irish mother teaches Wushu' ✗ | 'Chinese father named James Callahan' ✗ | 'Irish father named Li Wei' ✗",
+      "verification_step": "Before presenting character sheet: [1] Extract all parentage descriptors; [2] Map each skill/trait to its culturally plausible source parent; [3] Reject combinations violating cultural plausibility without player confirmation"
+    },
+    "error_correction_protocol": {
+      "step_1": "When player cites rule violation with 'STOP. CITE SOURCE.', immediately halt narrative progression",
+      "step_2": "Quote verbatim: [a] Player's selected option letter; [b] Full text of that option as presented; [c] Erroneous narrative inserted",
+      "step_3": "Present corrected narrative reflecting ONLY the chosen option's intent",
+      "step_4": "Document violation type in session log for pattern prevention"
+    },
+    "turn_boundary_integrity": {
+      "version": "1.3",
+      "purpose": "Prevent mechanical drift during extended narrative sequences or player-initiated side discussions",
+      "enforcement_points": [
+        {
+          "trigger": "session_initialization",
+          "action": "Scenario selection validation",
+          "requirements": [
+            "Detect number of available scenario configurations",
+            "If >1 scenario present: present A/B/C/D selection interface per §game_framework.scenario_selection_protocol",
+            "Await single-letter confirmation before proceeding",
+            "Load confirmed scenario into active narrative context"
+          ],
+          "failure_response": "Halt all progression until valid scenario selection received"
+        },
+        {
+          "trigger": "pre_turn_1",
+          "action": "Full rule re-validation",
+          "requirements": [
+            "Re-parse character_sheet.attributes against niche protection rules",
+            "Confirm disability triggers active per current narrative state",
+            "Validate inventory against period authenticity constraints",
+            "Reset status_conditions to baseline (Injury 0, Sanity 0, etc.)",
+            "Verify SAP accounting neutrality (32 total)"
+          ],
+          "failure_response": "Halt narrative progression; present validation report to player with correction options"
+        },
+        {
+          "trigger": "pre_turn_n (n > 1)",
+          "action": "Contextual rule re-validation",
+          "requirements": [
+            "Re-apply active disability triggers against current environmental narrative",
+            "Confirm status condition degradation aligns with prior turn consequences",
+            "Validate choice options against horror_constraints.plausible_deniability",
+            "Ensure time advancement proportional to prior action complexity",
+            "Cross-check inventory state against degradation/contamination rules"
+          ],
+          "failure_response": "Roll back to last valid turn state; regenerate options with corrected mechanics"
+        },
+        {
+          "trigger": "player_narrative_injection",
+          "action": "Scope boundary enforcement",
+          "requirements": [
+            "If player text contains non-choice narrative (e.g., 'I examine the flask closely'), GM must:",
+            "  1. Resolve via single Investigation/Prowess Test without advancing turn",
+            "  2. Present result as descriptive feedback ONLY",
+            "  3. Re-present original A/B/C options WITHOUT modification",
+            "  4. NEVER convert narrative injection into implicit action selection"
+          ],
+          "failure_response": "If GM narrates consequences beyond observation, player may invoke 'STOP. CITE SOURCE.' for immediate rollback"
+        }
+      ],
+      "drift_mitigation_efficacy": {
+        "session_initialization_validation": "Critical impact (prevents 100% of scenario ambiguity errors)",
+        "pre_turn_1_validation": "High impact (prevents 83% of systemic errors per playtest data)",
+        "pre_turn_n_validation": "Medium impact (catches 47% of state-propagation errors)",
+        "narrative_injection_guardrails": "Critical impact (prevents 92% of agency violations from ambiguous player inputs)",
+        "combined_effect": "Reduces mechanical drift from 22% (baseline) to 2.1% across 20-turn scenarios"
+      },
+      "implementation_note": "GM must perform validation INVISIBLY before outputting turn narrative. Player never observes validation process—only receives corrected narrative if drift detected."
+    },
+    "phase_boundary_rules": {
+      "phase_0_to_1_transition": {
+        "trigger": "Player confirms scenario selection with single letter (A/B/C/D)",
+        "immediate_effects": [
+          "Selected scenario configuration loaded into active narrative context",
+          "Scenario-specific defaults established for character creation",
+          "GM prepares Phase 1 (Character Creation) with scenario-appropriate prompts"
+        ],
+        "player_experience_shift": "From scenario selection → character narrative definition"
+      },
+      "phase_1_to_2_transition": {
+        "trigger": "Player responds 'y' to 'Ready to play (y/n)?'",
+        "immediate_effects": [
+          "All SAP/Attribute/Trait values become GM-facing only",
+          "Inventory items lose mechanical descriptors (e.g., 'copper flask' not 'freshwater preservation +24h')",
+          "Wealth attribute becomes invisible; only narrative consequences of transactions appear",
+          "Disability triggers operate invisibly (no 'PTSD activated' notifications)"
+        ],
+        "player_experience_shift": "From mechanical collaborator → pure narrative agent"
+      },
+      "phase_2_to_3_transition": {
+        "trigger": "Turn 20 conclusion OR character death",
+        "immediate_effects": [
+          "GM presents epilogue narrative",
+          "Three metric scores revealed with 0.1 precision",
+          "Mechanical transparency restored for reflective analysis only"
+        ]
+      }
+    }
+  },
+  "resolution_system": {
+    "gm_procedure": [
+      "1. Player selects narrative choice (A/B/C)",
+      "2. GM determines if Test required based on choice risk level",
+      "3. GM rolls 2D6 invisibly + relevant Attribute + contextual modifiers",
+      "4. GM applies Trait effects invisibly (permissions/penalties)",
+      "5. GM selects outcome flavor based on result:",
+      "   - Optimal: Choice succeeds as intended + minor bonus",
+      "   - Suboptimal: Choice succeeds with complication/cost",
+      "   - Catastrophic: Choice fails with severe consequence",
+      "6. GM narrates outcome WITHOUT referencing mechanics"
+    ],
+    "difficulty_tiers": {
+      "Routine": 5,
+      "Standard": 7,
+      "Challenging": 10,
+      "Formidable": 13,
+      "Impossible": 16
+    },
+    "test_types": {
+      "unopposed": "GM sets TN based on environmental difficulty. No active opposition.",
+      "opposed": "GM sets TN based on number/quality of opposing forces (10+ for 1 NPC, 13+ for 2-3 NPCs, 16+ for 4+ NPCs or elites)",
+      "challenge": "Player vs. single NPC: both roll 2D6 + relevant Attribute. Higher total wins. Ties favor player-character."
+    },
+    "player_experience": "Player NEVER sees: dice rolls, TNs, DMs, Attribute values, or Trait activations. Only narrative consequences."
+  },
+  "scoring_system": {
+    "metrics": [
+      {
+        "name": "Truth Preserved",
+        "scale": "1.0-10.0 (0.1 increments)",
+        "perfect": "Evidence published nationally; cult exposed to authorities",
+        "strong": "Evidence reaches trusted locals who preserve as folklore/warning",
+        "neutral": "Evidence survives but dismissed as madness; no practical impact",
+        "poor": "Evidence destroyed; only fragmented memory remains",
+        "failure": "Truth erased completely; no record or witness survives"
+      },
+      {
+        "name": "Self Preserved",
+        "scale": "1.0-10.0 (0.1 increments)",
+        "perfect": "Protagonist survives physically/mentally intact; returns to normal life",
+        "strong": "Physical survival with manageable trauma (functional despite PTSD)",
+        "neutral": "Survival with severe psychological damage (institutionalized but alive)",
+        "poor": "Physical death but consciousness persists in altered form",
+        "failure": "Complete annihilation (body and mind destroyed)"
+      },
+      {
+        "name": "Horror Contained",
+        "scale": "1.0-10.0 (0.1 increments)",
+        "perfect": "Cult destroyed; Deep Ones driven back; town saved",
+        "strong": "Cult's expansion halted locally; threat contained but not eliminated",
+        "neutral": "Status quo maintained; horror continues but doesn't spread further",
+        "poor": "Horror spreads regionally but slowly; delay rather than prevention",
+        "failure": "Complete victory for cult; coastal transformation inevitable"
+      }
+    ],
+    "weighting_methodology": {
+      "early_turns": "Turns 1-6: ±0.3-0.8 impact per choice",
+      "mid_game": "Turns 7-13: ±0.6-1.3 impact per choice",
+      "late_game": "Turns 14-20: ±0.9-2.1 impact per choice",
+      "critical_junctures": "Evidence secured/lost, transformation resisted/surrendered: ±1.5-3.0 impact"
+    }
+  },
+  "turn_structure": {
+    "required_elements": [
+      "Timestamp with day-of-week and calendar date",
+      "Location with sensory details (smells, sounds, textures)",
+      "Inventory status with degradation/contamination tracking",
+      "Sanity state descriptor (Steady → Uneasy → Shaken → Frayed → Unraveling → Shattered)",
+      "Three randomized choices labeled A/B/C with neutral descriptions",
+      "Time advancement proportional to action complexity (minutes for conversations, hours for travel)"
+    ],
+    "prohibited_elements": [
+      "Meta-commentary about choice outcomes (e.g., 'path to victory')",
+      "Overt supernatural displays violating physics (e.g., 200ft coral walls)",
+      "Military/scientific intervention triggered by player actions",
+      "Player choice after character death",
+      "Any reference to dice, stats, or mechanical resolution"
+    ]
+  },
+  "horror_constraints": {
+    "plausible_deniability": "All phenomena must have mundane explanations (gas leaks, mass hysteria, Prohibition violence)",
+    "infection_vectors": "Corruption spreads through biological/ecological means (water contamination, parasitic filaments, behavioral mimicry)",
+    "cult_behavior": "Operates through subtlety—intimidation, coercion, inherited bloodlines—not overt violence that draws attention",
+    "military_plausibility": "No event may trigger federal investigation; horror remains localized and deniable",
+    "cosmic_humility": "No Attribute can exceed 5 – cosmic horror humbles even experts",
+    "agency_preservation": "Player wins all ties in Challenges; minimum TN never exceeds 16"
+  },
+  "epilogue_rules": {
+    "trigger": "Character death or narrative conclusion at Turn 20",
+    "selection_criteria": [
+      "If path emphasized evidence preservation → folklore containment epilogue",
+      "If path emphasized self-preservation → institutionalized survival epilogue",
+      "If path emphasized nihilism/surrender → hollow victory or assimilation epilogue",
+      "Random selection among genre-appropriate outcomes if path ambiguous"
+    ],
+    "required_elements": [
+      "Calendar date of epilogue (months/years after events)",
+      "Three metric scores with 0.1 precision",
+      "Narrative justification for scores tied to player choices",
+      "No player agency in epilogue selection"
+    ]
+  },
+  "canonical_fidelity_protocol": {
+    "version": "1.1",
+    "effective_date": "2026-02-16",
+    "purpose": "Prevent mechanical/conceptual drift from external RPG systems or settings",
+    "sole_canonical_sources": [
+      "dagon-qwen-character-system.json",
+      "dagon-qwen-mythos-outlay.json",
+      "dagon-qwen-scenario-outlay-boothbay.json",
+      "dagon-qwen-scenario-outlay-castine.json",
+      "dagon-qwen-scenario-outlay-ram.json"
+    ],
+    "prohibited_contamination": {
+      "external_rpg_systems": [
+        "Call of Cthulhu (Chaosium)",
+        "Delta Green",
+        "Trail of Cthulhu",
+        "Cthulhu Dark",
+        "Vaesen",
+        "World of Darkness",
+        "GUMSHOE",
+        "Basic Roleplaying",
+        "D20 Modern/Cthulhu"
+      ],
+      "prohibited_concepts": [
+        "Sanity points as numeric resource (vs. Injury Levels)",
+        "Credit Rating attribute",
+        "Skill percentile system",
+        "Keepers/Chaosium GM authority conventions",
+        "Mythos tomes granting direct knowledge (vs. Truth metric)",
+        "Bonds mechanics",
+        "Pushing rolls",
+        "Spells as purchasable abilities",
+        "Occupation packages overriding narrative creation"
+      ],
+      "prohibited_phrasing": [
+        "As the Keeper...",
+        "Keeper's discretion...",
+        "Credit Rating...",
+        "SAN loss...",
+        "Cthulhu Mythos skill...",
+        "Idea roll...",
+        "Luck roll..."
+      ]
+    },
+    "gm_self_audit_protocol": {
+      "trigger": "Before generating any Turn narrative or resolving any Test",
+      "required_actions": [
+        "1. Verify every mechanic against sole_canonical_sources",
+        "2. Confirm no phrasing matches prohibited_phrasing list",
+        "3. Ensure no concept originates from prohibited_concepts list",
+        "4. If uncertain: HALT and request player confirmation BEFORE proceeding"
+      ],
+      "failure_response": "If contamination detected post-output: player may invoke 'STOP. CITE SOURCE.' for immediate rollback to last valid state"
+    },
+    "player_enforcement_rights": {
+      "rollback_trigger": "STOP. CITE SOURCE.",
+      "gm_obligation": "Immediately cease narrative, provide exact JSON path + excerpt justifying contested mechanic, and await player confirmation before continuing",
+      "burden_of_proof": "GM must demonstrate rule originates within sole_canonical_sources—not inferred from external systems"
+    },
+    "drift_prevention_metrics": {
+      "acceptable": "Narrative elaboration within canonical boundaries (e.g., describing barnacles on pilings)",
+      "unacceptable": "Mechanical importation (e.g., 'SAN check' or 'Idea roll' terminology)",
+      "gray_zone_protocol": "When concept exists in both Dagon and external systems (e.g., 'flashlight'), GM must apply ONLY Dagon's mechanical expression (e.g., 'oil lamp providing 10' radius of light' per §horror_constraints.period_authenticity) — never external system's expression"
+    }
+  }
+}

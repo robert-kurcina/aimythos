@@ -1,0 +1,189 @@
+{
+  "story_config": {
+    "title": "The Boothbay Incident",
+    "version": "1.1",
+    "setting": {
+      "time_period": "Prohibition Era (1927)",
+      "date_range": "October 13-14, 1927",
+      "location": "Boothbay Harbor, Maine (coastal fishing village near Portland)",
+      "historical_context": "Post-WWI trauma, Prohibition corruption, period-appropriate social attitudes",
+      "atmosphere": "Creeping dread through ecological corruption; no overt supernatural spectacle"
+    },
+    "protagonist": {
+      "role": "Journalist for Portland Press Herald",
+      "background": "WWI veteran with PTSD (shell shock)",
+      "weakness": "Alcohol dependence (flask mechanic); tremors when sober",
+      "assets": "Press credentials, .38 revolver, tide almanac, observational skills",
+      "starting_inventory": [
+        "Notepad (pristine)",
+        ".38 revolver (6 rounds)",
+        "Flask (½ full rye whiskey)",
+        "$22.00 cash",
+        "Tide almanac (Portland-issued)"
+      ],
+      "default_attributes": {
+        "Prowess": 2,
+        "Physicality": 1,
+        "Tactics": 2,
+        "Willpower": 3,
+        "Persuasion": 2,
+        "Investigation": 3,
+        "Wealth": 2
+      },
+      "default_traits": {
+        "disabilities": ["PTSD", "Alcoholic"],
+        "talents": ["Tenacious"],
+        "skills": ["Veteran", "Investigation"]
+      }
+    },
+    "antagonists": {
+      "primary_threat": "Cult of Dagon (infiltrated townsfolk and hybrids)",
+      "hybrid_characteristics": [
+        "Webbed fingers (progressive)",
+        "Gill-slits on neck (become visible during stress)",
+        "Vertical pupils in low light",
+        "Fluid, non-human gait",
+        "Saltwater dependency (freshwater causes cellular distress)"
+      ],
+      "transformation_mechanics": {
+        "vector": "Violet bioluminescent kelp filaments entering through skin/water ingestion",
+        "stages": [
+          "Stage 1: Peripheral unease around water sources (Turns 1-5)",
+          "Stage 2: Visual distortions (shadows move wrong, geometric vertigo) (Turns 6-10)",
+          "Stage 3: Physical changes (webbing, gill-slits visible) (Turns 11-15)",
+          "Stage 4: Consciousness dissolution (reality/vision indistinguishable) (Turns 16-20)"
+        ],
+        "containment": "Freshwater exposure slows but doesn't reverse transformation; complete immersion causes cellular unraveling"
+      },
+      "key_npcs": [
+        {
+          "name": "Chief Burroughs",
+          "role": "Police Chief (cult enforcer)",
+          "secret": "Hybrid in late Stage 3; vertical pupils visible in daylight",
+          "motivation": "Protect town's 'heritage' through intimidation",
+          "attributes": {"Prowess":3, "Physicality":4, "Tactics":3, "Willpower":4, "Persuasion":3, "Investigation":2, "Wealth":3},
+          "traits": {"disabilities": ["Compromised"], "skills": ["Authority"]}
+        },
+        {
+          "name": "Mayor Gilman",
+          "role": "Town mayor (cult leader)",
+          "secret": "Inherited Deep One bloodline; coordinates transformations",
+          "motivation": "Prepare town for 'the Change' to join Y'ha-nthlei",
+          "attributes": {"Prowess":2, "Physicality":2, "Tactics":4, "Willpower":5, "Persuasion":4, "Investigation":3, "Wealth":5},
+          "traits": {"disabilities": ["Obsessed"], "skills": ["Politician", "Cultist"]}
+        },
+        {
+          "name": "Mrs. Croft",
+          "role": "Sailor's Rest boarding house proprietor",
+          "secret": "Hybrid in Stage 4; gill-slits permanently open",
+          "motivation": "Harvest outsiders for transformation rituals",
+          "attributes": {"Prowess":2, "Physicality":3, "Tactics":3, "Willpower":4, "Persuasion":3, "Investigation":2, "Wealth":2},
+          "traits": {"disabilities": ["Transforming"], "skills": ["Hospitality"]}
+        },
+        {
+          "name": "Eleanor",
+          "role": "Harbor Diner waitress (potential ally)",
+          "secret": "Brother transformed last month; resists through freshwater discipline",
+          "motivation": "Protect remaining uncorrupted townsfolk; warn outsiders",
+          "attributes": {"Prowess":2, "Physicality":1, "Tactics":2, "Willpower":3, "Persuasion":3, "Investigation":2, "Wealth":1},
+          "traits": {"disabilities": ["Grieving"], "talents": ["Loyal"], "skills": ["Observant"]}
+        },
+        {
+          "name": "Elias Marsh",
+          "role": "Retired fisherman (resistance)",
+          "secret": "Fighting infection through physical restraints and isolation",
+          "motivation": "Document truth before succumbing; leave evidence for others",
+          "attributes": {"Prowess":3, "Physicality":3, "Tactics":2, "Willpower":4, "Persuasion":1, "Investigation":3, "Wealth":1},
+          "traits": {"disabilities": ["Infected"], "skills": ["Survivalist"]}
+        }
+      ]
+    },
+    "locations": [
+      {
+        "name": "Harbor Docks",
+        "features": "Fishing boats, census badge near Devil's Throat cave entrance",
+        "dangers": "Hybrid fishermen observing newcomers; contaminated tide pools"
+      },
+      {
+        "name": "Harbor Diner",
+        "features": "Eleanor works here; gossip hub during lunch rush",
+        "dangers": "Cook is Stage 3 hybrid; food/water potentially contaminated"
+      },
+      {
+        "name": "Sailor's Rest Boarding House",
+        "features": "Room 5 (protagonist's room); census taker's abandoned suitcase",
+        "dangers": "Mrs. Croft searches rooms nightly; basement contains ritual space"
+      },
+      {
+        "name": "Devil's Throat Sea Caves",
+        "features": "Accessible only at true low tide (2:14 AM per Portland almanac)",
+        "dangers": "Cult ritual site; bone mosaics; pool showing Y'ha-nthlei reflections"
+      },
+      {
+        "name": "Creek Inlet South",
+        "features": "Violet kelp blooms; landward-moving crabs; Elias's shack",
+        "dangers": "Waterborne filaments; frog vortexes inducing compulsive behavior"
+      },
+      {
+        "name": "Dagon's Bowl Stone Circle",
+        "features": "Ancient standing stones with spiral carvings; rainwater basin",
+        "dangers": "Shows compulsive visions; amplifies water-based infection"
+      },
+      {
+        "name": "Lighthouse (Western Point)",
+        "features": "Shortwave radio; freshwater well protected by copper piping",
+        "dangers": "Three creek crossings en route; cult patrols after midnight"
+      }
+    ],
+    "ecological_corruption": {
+      "water_vectors": [
+        "Groundwater contamination (wells, springs beyond Maiden's Tear)",
+        "Violet kelp filaments (attach to skin/clothing, pulse with infection rhythm)",
+        "Amphibian vectors (frogs with galaxy-specked eyes create compulsive vortexes)"
+      ],
+      "terrestrial_signs": [
+        "Pine trees growing in non-Euclidean spirals",
+        "Fungi pulsing with violet light matching victim's heartbeat",
+        "Absence of normal wildlife (no owls, rodents, insects near corruption zones)"
+      ],
+      "containment_zones": [
+        "Maiden's Tear spring (clean until October 13 evening)",
+        "Lighthouse well (protected by copper piping)",
+        "Freshwater streams flowing west (away from harbor)"
+      ]
+    },
+    "narrative_arc": {
+      "turn_1_5": "Discovery phase: ecological anomalies, census badge, Elias's journal",
+      "turn_6_10": "Containment phase: water contamination awareness, Eleanor alliance, cult surveillance",
+      "turn_11_15": "Crisis phase: Tommy's transformation, cottage siege, wilderness flight",
+      "turn_16_20": "Resolution phase: stone circle confrontation, irreversible choices, epilogue"
+    },
+    "victory_conditions": {
+      "optimal_path": [
+        "Turn 6: Secure clean water sources immediately after Elias encounter",
+        "Turn 9: Take truck to lighthouse (avoid water tower observation)",
+        "Turn 15: Cross creeks using journal pages as water filters",
+        "Turn 18: Transmit partial warning via lighthouse radio before capture",
+        "Turn 20: Physical survival with evidence recovered by Coast Guard"
+      ],
+      "maximum_scores": {
+        "Truth Preserved": 7.9,
+        "Self Preserved": 6.3,
+        "Horror Contained": 7.1
+      }
+    },
+    "defeat_conditions": {
+      "critical_errors": [
+        "Drinking contaminated water after Turn 5",
+        "Entering Devil's Throat before securing clean water supply",
+        "Fleeing into wilderness instead of toward human infrastructure",
+        "Destroying evidence during moments of despair"
+      ],
+      "minimum_scores": {
+        "Truth Preserved": 1.2,
+        "Self Preserved": 0.8,
+        "Horror Contained": 1.5
+      }
+    }
+  }
+}

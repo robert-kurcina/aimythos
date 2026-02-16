@@ -1,0 +1,190 @@
+{
+  "story_config": {
+    "title": "The Salt-Stained Silence",
+    "version": "1.0",
+    "setting": {
+      "time_period": "Prohibition Era (1927)",
+      "date_range": "November 2-3, 1927",
+      "location": "Castine, Maine (peninsular fishing village with fortified colonial architecture)",
+      "historical_context": "Post-WWI isolationism; wealthy Boston Brahmins maintain summer estates while local fishing families endure generational poverty",
+      "atmosphere": "Oppressive silence broken by compulsive chanting at tide shifts; horror manifests through familial betrayal and inherited corruption"
+    },
+    "protagonist": {
+      "role": "Private investigator hired by Boston Brahmin family",
+      "background": "Former Pinkerton agent dismissed for 'excessive empathy' toward suspects; carries guilt over wrongful conviction you helped secure",
+      "weakness": "Moral injury (cannot abandon vulnerable persons even at personal risk)",
+      "assets": "Boston social credentials, .32 pocket pistol, adoption records revealing orphan's institutional history at Arkham Sanitarium",
+      "starting_inventory": [
+        "Leather satchel with case file",
+        ".32 pocket pistol (5 rounds)",
+        "Railroad ticket stub (Boston→Castine)",
+        "$38.00 cash",
+        "Photograph of missing woman (Imogen Vane) aged 19",
+        "Arkham Sanitarium intake ledger excerpt"
+      ],
+      "default_attributes": {
+        "Prowess": 2,
+        "Physicality": 1,
+        "Tactics": 3,
+        "Willpower": 2,
+        "Persuasion": 3,
+        "Investigation": 3,
+        "Wealth": 3
+      },
+      "default_traits": {
+        "disabilities": ["Moral Injury", "Haunted"],
+        "talents": ["Tenacious"],
+        "skills": ["Forensics", "Politician"]
+      }
+    },
+    "antagonists": {
+      "primary_threat": "Cult of Dagon (bloodline-based hierarchy controlling town governance)",
+      "hybrid_characteristics": [
+        "Salt-crusted skin that weeps brine when stressed",
+        "Webbing between toes visible only when barefoot",
+        "Ability to hold breath 4x human norm (submerged observation)",
+        "Compulsive tide-synchronization (actions align with lunar cycles)",
+        "Vocal cords produce sub-audible frequencies that induce compliance"
+      ],
+      "transformation_mechanics": {
+        "vector": "Inherited bloodline activation triggered by proximity to tidal convergence points",
+        "stages": [
+          "Stage 1: Salt cravings intensify; dreams of deep water (Turns 1-4)",
+          "Stage 2: Skin develops crystalline salt deposits; aversion to freshwater (Turns 5-9)",
+          "Stage 3: Gill slits form beneath jawline; compulsive tide-watching (Turns 10-14)",
+          "Stage 4: Consciousness merges with tidal rhythms; loss of individual identity (Turns 15-20)"
+        ],
+        "containment": "Complete freshwater immersion for 24+ hours may arrest progression but cannot reverse Stage 3+ changes"
+      },
+      "key_npcs": [
+        {
+          "name": "Sheriff Cobb",
+          "role": "Town sheriff (cult enforcer)",
+          "secret": "Orchestrated convict's wrongful conviction to eliminate witness to hybrid births",
+          "motivation": "Maintain bloodline purity by eliminating 'contaminated' outsiders",
+          "attributes": {"Prowess":2, "Physicality":3, "Tactics":3, "Willpower":4, "Persuasion":3, "Investigation":2, "Wealth":2},
+          "traits": {"disabilities": ["Compromised"], "skills": ["Authority"]}
+        },
+        {
+          "name": "Reverend Pike",
+          "role": "Congregational minister (cult spiritual leader)",
+          "secret": "Conducts 'baptisms' that accelerate transformation via saltwater infusion",
+          "motivation": "Prepare town for 'the Rising' when tidal convergence permits passage to Y'ha-nthlei",
+          "attributes": {"Prowess":1, "Physicality":1, "Tactics":4, "Willpower":5, "Persuasion":5, "Investigation":2, "Wealth":3},
+          "traits": {"disabilities": ["Zealous"], "skills": ["Cultist", "Orator"]}
+        },
+        {
+          "name": "Zebediah",
+          "role": "Backwoods trapper (Stage 3 hybrid)",
+          "secret": "Missing woman's biological father; arranged her Arkham placement to delay transformation",
+          "motivation": "Protect daughter from cult's forced transformation ritual",
+          "attributes": {"Prowess":4, "Physicality":3, "Tactics":2, "Willpower":4, "Persuasion":1, "Investigation":3, "Wealth":0},
+          "traits": {"disabilities": ["Transforming"], "skills": ["Survivalist"]}
+        },
+        {
+          "name": "Martha Higgins",
+          "role": "General store proprietor (pre-transformed)",
+          "secret": "Missing woman's aunt; provides supplies to hybrids in backwoods",
+          "motivation": "Maintain family bloodline while avoiding full transformation",
+          "attributes": {"Prowess":2, "Physicality":2, "Tactics":3, "Willpower":3, "Persuasion":4, "Investigation":2, "Wealth":2},
+          "traits": {"disabilities": ["Conflicted"], "skills": ["Hospitality"]}
+        },
+        {
+          "name": "Regis 'Ree' Rourke",
+          "role": "Escaped convict (Stage 2 hybrid)",
+          "secret": "Did not kill Imogen; helped her escape Arkham after discovering her institutional abuse",
+          "motivation": "Reach tidal convergence point before cult intercepts him; complete transformation to join Imogen",
+          "attributes": {"Prowess":3, "Physicality":3, "Tactics":2, "Willpower":4, "Persuasion":2, "Investigation":1, "Wealth":0},
+          "traits": {"disabilities": ["Wanted", "Grieving"], "talents": ["Lucky"], "skills": ["Veteran"]}
+        }
+      ]
+    },
+    "locations": [
+      {
+        "name": "Castine Wharf",
+        "features": "Fishing fleet with salt-encrusted hulls; tide charts showing anomalous convergence November 3 at 3:17 AM",
+        "dangers": "Sheriff's deputies monitor all arrivals; freshwater sources deliberately contaminated"
+      },
+      {
+        "name": "Higgins General Store",
+        "features": "Ledger showing purchases by 'E. Vane' of salt blocks and kelp supplements",
+        "dangers": "Martha reports investigator's questions to cult within 1 hour"
+      },
+      {
+        "name": "Dyar Mountain Lookout",
+        "features": "Colonial-era fortifications overlooking tidal convergence point; Imogen's hidden journal",
+        "dangers": "Cult patrols increase after dusk; freshwater springs tainted with violet filaments"
+      },
+      {
+        "name": "Backwoods Shantytown",
+        "features": "Hybrid families living in isolation; saltwater cisterns for daily immersion",
+        "dangers": "Non-hybrids experience compulsive disorientation; Sheriff's men execute intruders"
+      },
+      {
+        "name": "Congregational Church",
+        "features": "Baptismal font filled with seawater; hidden cellar containing transformation ritual implements",
+        "dangers": "Reverend Pike's sermons induce suggestibility; exits locked during 'special services'"
+      },
+      {
+        "name": "Tidal Convergence Point",
+        "features": "Three ocean currents meet creating standing wave; underwater passage visible only at convergence",
+        "dangers": "Transformation accelerates 10x within 100 yards; freshwater protection fails completely"
+      },
+      {
+        "name": "Boston Brahmin Summer Estate",
+        "features": "Adoption records revealing Imogen's orphanage origins; copper-piped freshwater well",
+        "dangers": "Cult has infiltrated staff; estate isolated by 2-mile forest road"
+      }
+    ],
+    "ecological_corruption": {
+      "water_vectors": [
+        "Tidal convergence amplifies transformation field (radius expands hourly after Turn 10)",
+        "Salt crystals forming on vegetation pulse with bioluminescent violet during high tide",
+        "Freshwater sources develop brine taste 12 hours before contamination becomes visible"
+      ],
+      "terrestrial_signs": [
+        "Pine needles arranged in non-Euclidean spirals after wind events",
+        "Domestic animals avoid backwoods areas; livestock found dead with gill-like slits",
+        "Soil develops crystalline salt structures matching hybrid skin patterns"
+      ],
+      "containment_zones": [
+        "Boston Estate well (copper piping blocks contamination)",
+        "Castine Historical Society archives (sealed stone basement with freshwater cistern)",
+        "Dyar Mountain summit (elevation >200ft provides temporary resistance)"
+      ]
+    },
+    "narrative_arc": {
+      "turn_1_5": "Arrival phase: establish town's oppressive silence, discover Imogen's Arkham connection, encounter Ree's escape trail",
+      "turn_6_10": "Pursuit phase: track Ree through backwoods while cult surveillance intensifies; learn of bloodline inheritance",
+      "turn_11_15": "Convergence phase: race to tidal convergence point before 3:17 AM; choose between saving Ree/Imogen or preserving evidence",
+      "turn_16_20": "Resolution phase: witness transformation ritual; make irreversible choice determining all three metrics"
+    },
+    "victory_conditions": {
+      "optimal_path": [
+        "Turn 3: Secure Boston Estate as freshwater sanctuary before cult infiltrates",
+        "Turn 7: Forge alliance with Zebediah despite appearance; gain backwoods navigation",
+        "Turn 12: Intercept Ree before cult capture; learn truth of Imogen's escape",
+        "Turn 17: Document ritual at convergence point using waterproof camera",
+        "Turn 20: Transmit evidence via estate radio before transformation field reaches summit"
+      ],
+      "maximum_scores": {
+        "Truth Preserved": 6.8,
+        "Self Preserved": 5.2,
+        "Horror Contained": 4.9
+      }
+    },
+    "defeat_conditions": {
+      "critical_errors": [
+        "Accepting hospitality involving food/drink before Turn 6",
+        "Pursuing Ree without freshwater supply after Turn 10",
+        "Confronting Sheriff Cobb directly without evidence leverage",
+        "Remaining within 500 yards of convergence point after 2:00 AM November 3"
+      ],
+      "minimum_scores": {
+        "Truth Preserved": 0.7,
+        "Self Preserved": 0.4,
+        "Horror Contained": 0.9
+      }
+    }
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "character_system": {
+    "version": "2.1",
+    "attributes": {
+      "schema": {
+        "Prowess": "Agility, movement speed, unarmed combat proficiency",
+        "Physicality": "Brawn, raw strength, pain tolerance",
+        "Tactics": "Terrain exploitation, outcome prediction, tactical planning",
+        "Willpower": "Psychological resilience against horror/pain/confusion",
+        "Persuasion": "Logic-based convincing + social charm",
+        "Investigation": "Observation, clue synthesis, questioning instinct",
+        "Wealth": "Access to funds/services (see Wealth mechanics)"
+      },
+      "scale": {
+        "0": "Incompetent/absent ability (default for untrained)",
+        "1": "Basic familiarity (amateur competence)",
+        "2": "Skilled/trained (professional baseline)",
+        "3": "Highly skilled (specialist tier)",
+        "4": "Expert (regional recognition)",
+        "5": "Best-in-field (national/international tier)"
+      },
+      "sap_costs": {
+        "0": 0,
+        "1": 2,
+        "2": 3,
+        "3": 5,
+        "4": 8,
+        "5": 13
+      },
+      "default_distribution": [3, 2, 2, 1, 1, 1, 1],
+      "base_sap_cost": 19,
+      "starting_sap": 32
+    },
+    "traits": {
+      "design_principle": "Traits provide qualitative advantages or narrative permissions ATTRIBUTES cannot replicate. Never grant flat Attribute bonuses.",
+      "disabilities": {
+        "mechanic": "Triggered penalties (no DM stacking)",
+        "examples": [
+          {"name": "PTSD", "effect": "When exposed to war-related stimuli (gas, mud, explosions), Willpower TN +3 for next 2 turns"},
+          {"name": "Alcoholic", "effect": "When sober for >4 hours, Investigation TN +2 (tremors impair observation)"},
+          {"name": "Cynical", "effect": "Cannot accept aid from NPCs without Persuasion Test TN 10+"}
+        ]
+      },
+      "talents": {
+        "mechanic": "One-time narrative permissions per scenario (no DMs)",
+        "examples": [
+          {"name": "Lucky", "effect": "Once per scenario: reroll any Test after seeing result"},
+          {"name": "Tenacious", "effect": "Once per scenario: when reduced to Injury Level 5 (Dying), make one Willpower Test TN 10 to stabilize at Level 4"},
+          {"name": "Vigilant", "effect": "Once per scenario: detect hidden threat without Investigation Test"}
+        ]
+      },
+      "skills": {
+        "mechanic": "+1 DM max in specific context + one narrative permission Attributes cannot provide",
+        "examples": [
+          {
+            "name": "Veteran",
+            "dm": "+1 Willpower vs. combat trauma",
+            "permission": "Recognize military/cult insignia without Investigation Test; handle period firearms without penalty"
+          },
+          {
+            "name": "Scientist",
+            "dm": "+1 Investigation analyzing unnatural biology",
+            "permission": "Hypothesize Deep One transformation mechanics without direct evidence"
+          },
+          {
+            "name": "Survivalist",
+            "dm": "+1 Prowess navigating wilderness",
+            "permission": "Identify safe water sources by taste alone (bypasses water contamination Tests)"
+          }
+        ]
+      },
+      "stacking_rules": "Only one Skill DM applies per Test (highest). Talents never stack. Disabilities apply when triggered."
+    },
+    "dice_system": {
+      "core_mechanic": "2D6 + Attribute + DMs ≥ Target Number (TN)",
+      "default_tn": 7,
+      "difficulty_tiers": {
+        "Routine": 5,
+        "Standard": 7,
+        "Challenging": 10,
+        "Formidable": 13,
+        "Impossible": 16
+      },
+      "test_types": {
+        "unopposed": "GM sets TN based on environmental difficulty. No active opposition.",
+        "opposed": "GM sets TN based on number/quality of opposing forces (10+ for 1 NPC, 13+ for 2-3 NPCs, 16+ for 4+ NPCs or elites)",
+        "challenge": "Player vs. single NPC: both roll 2D6 + relevant Attribute. Higher total wins. Ties favor player-character."
+      },
+      "modifier_categories": {
+        "equipment": "Highest applicable bonus/penalty (e.g., sniper scope +2, broken weapon -2)",
+        "status_conditions": "Cumulative penalties only (see Status Conditions table)",
+        "traits": "One DM per category (Disability/Talent/Skill) as per stacking rules"
+      }
+    },
+    "status_conditions": {
+      "injury": [
+        {"level": 0, "state": "Healthy", "dm": 0},
+        {"level": 1, "state": "Bruised", "dm": -1},
+        {"level": 2, "state": "Wounded", "dm": -2},
+        {"level": 3, "state": "Crippled", "dm": -3},
+        {"level": 4, "state": "Maimed", "dm": -4},
+        {"level": 5, "state": "Dying", "dm": -5}
+      ],
+      "sanity": [
+        {"level": 0, "state": "Steady", "dm": 0},
+        {"level": 1, "state": "Uneasy", "dm": -1},
+        {"level": 2, "state": "Shaken", "dm": -2},
+        {"level": 3, "state": "Frayed", "dm": -2},
+        {"level": 4, "state": "Unraveling", "dm": -3},
+        {"level": 5, "state": "Shattered", "dm": -4}
+      ],
+      "mental_fatigue": [
+        {"level": 0, "state": "Rested", "dm": 0},
+        {"level": 1, "state": "Tired", "dm": -1},
+        {"level": 2, "state": "Weary", "dm": -2},
+        {"level": 3, "state": "Exhausted", "dm": -3},
+        {"level": 4, "state": "Spent", "dm": -4},
+        {"level": 5, "state": "Catatonic", "dm": -5}
+      ],
+      "physical_fatigue": [
+        {"level": 0, "state": "Rested", "dm": 0},
+        {"level": 1, "state": "Tired", "dm": -1},
+        {"level": 2, "state": "Weary", "dm": -2},
+        {"level": 3, "state": "Exhausted", "dm": -3},
+        {"level": 4, "state": "Spent", "dm": -4},
+        {"level": 5, "state": "Collapsed", "dm": -5}
+      ],
+      "application": "Sum all active status DMs. Apply once to all Tests until conditions improve."
+    },
+    "cash_on_hand_mechanics": {
+      "version": "1.0",
+      "anchor": "character-system.json §attributes.wealth",
+      "baseline_cash_by_wealth": {
+        "description": "Starting physical currency carried (distinct from Wealth attribute's credit access)",
+        "values": {
+          "0": "$2.50",
+          "1": "$8.50", 
+          "2": "$22.00",
+          "3": "$45.00",
+          "4": "$85.00",
+          "5": "$150.00"
+        },
+        "design_rationale": "Reflects period plausibility: higher Wealth characters carry more physical cash for convenience, but amounts remain constrained by 1927 safety norms (no one carries $500 in pockets)"
+      },
+      "utility_cap": {
+        "threshold": "$50.00",
+        "effect": "Cash beyond $50 provides no mechanical advantage per §horror_constraints.plausible_deniability — instead triggers narrative vulnerability (cult surveillance, pickpocket risk)"
+      },
+      "sap_expenditure_option": {
+        "allowed": false,
+        "rationale": "SAP governs ONLY Attributes and Traits per §sap_allocation.total_sap — introducing cash-as-SAP-expenditure would violate niche protection and create optimization meta-game contradicting §game_framework.core_principles"
+      }
+    },
+    "wealth_mechanics": {
+      "scale": [
+        {"level": 0, "description": "Destitute (homeless/transient)"},
+        {"level": 1, "description": "Poor (day laborer)"},
+        {"level": 2, "description": "Modest (clerk/journalist) – DEFAULT FOR PC"},
+        {"level": 3, "description": "Comfortable (professional)"},
+        {"level": 4, "description": "Affluent (business owner)"},
+        {"level": 5, "description": "Wealthy (patron/industrialist)"}
+      ],
+      "usage_rules": [
+        "Auto-success for routine purchases (meals, lodging, minor bribes)",
+        "Unopposed Test required for significant expenditures (vehicles, major bribes, rare equipment)",
+        "TN scales with expense: 7+ for $50, 10+ for $200, 13+ for $500, 16+ for $1000+ (1927 dollars)",
+        "On TN 10+ success: Wealth permanently reduced by 1 for remainder of scenario",
+        "Wealth cannot drop below 0; failure means funds insufficient"
+      ],
+      "npc_defaults": {
+        "rustic_poor": 0,
+        "rustic_worker": 1,
+        "employee": 2,
+        "office_worker": 3,
+        "field_veteran": 4,
+        "affluent": 5
+      }
+    },
+    "character_creation": {
+      "workflow": [
+        "1. Player provides narrative description (background, profession, key traits)",
+        "2. GM proposes Attribute distribution + Traits based on description",
+        "3. GM presents FULL character sheet including:",
+        "   - Narrative description (profession, background, appearance)",
+        "   - Attribute values (Prowess, Physicality, Tactics, Willpower, Persuasion, Investigation, Wealth)",
+        "   - Traits (Disabilities required, plus Talents/Skills)",
+        "   - Starting inventory with period-appropriate items",
+        "   - SAP accounting (base 19 + adjustments = 32 total)",
+        "4. GM asks: 'Ready to play (y/n)?'",
+        "5a. If 'y': Game begins immediately with Turn 1",
+        "5b. If 'n': GM presents 4 REFINEMENT OPTIONS:",
+        "    A. Narrative trade-off favoring evidence resilience",
+        "    B. Narrative trade-off favoring personal endurance",
+        "    C. Narrative trade-off favoring threat containment",
+        "    D. Revise narrative description/inventory",
+        "6. After selection:",
+        "   - For A/B/C: GM applies balanced SAP trade-off (no net gain), updates sheet, re-prompts 'Ready to play (y/n)?'",
+        "   - For D: GM presents current description, accepts revised narrative, regenerates stats, re-prompts 'Ready to play (y/n)?'",
+        "7. Loop steps 5-6 until 'y' received. NO changes permitted after confirmation."
+      ],
+      "refinement_options_template": {
+        "presentation_rule": "Options MUST be phrased as narrative character adjustments with implicit trade-offs. NEVER reference scoring metrics (Truth/Self/Horror) or mechanical advantages.",
+        "sap_balance_rule": "All trade-offs must maintain net SAP neutrality (e.g., +3 SAP gain requires -3 SAP loss elsewhere)",
+        "example_options": [
+          {
+            "option": "A",
+            "narrative_phrasing": "You've spent years cross-referencing police blotters—your eye for detail sharpens, but you've grown impatient with bureaucratic niceties",
+            "mechanical_effect": "+1 Investigation, lose Politician skill",
+            "implicit_bias": "Truth Preserved"
+          },
+          {
+            "option": "B",
+            "narrative_phrasing": "Your war experience taught you to endure wounds that would break others—but you've lost the instinct to spot ambushes before they happen",
+            "mechanical_effect": "Gain Tenacious talent, lose Vigilant talent",
+            "implicit_bias": "Self Preserved"
+          },
+          {
+            "option": "C",
+            "narrative_phrasing": "You understand how threats propagate through communities—but your focus on patterns makes you miss crucial details in the moment",
+            "mechanical_effect": "+1 Tactics, -1 Investigation",
+            "implicit_bias": "Horror Contained"
+          },
+          {
+            "option": "D",
+            "narrative_phrasing": "Revise your character's background, profession, or key possessions to better reflect your intended approach",
+            "mechanical_effect": "Full stat regeneration based on new narrative",
+            "implicit_bias": "Player-defined"
+          }
+        ]
+      },
+      "sap_allocation": {
+        "base_attributes": 19,
+        "additional_sap": 13,
+        "disability_bonus": "+3 SAP per Disability (1 required, max 3 total)",
+        "trait_cost": "-3 SAP per Talent/Skill (max 3 total positive traits)",
+        "total_sap": 32,
+        "unspent_sap": "Lost at confirmation"
+      },
+      "npc_generation": {
+        "major_npc": "30 SAP + 1 required Disability",
+        "minor_npc": "25 SAP + 1 required Disability",
+        "mook": "15 SAP (pre-set stats, no Traits)"
+      },
+      "post_creation_rule": "After 'y' confirmation, player operates solely on narrative intuition. GM uses hidden stats to modulate outcomes without revealing mechanics. NO further modifications permitted until scenario conclusion or abort."
+    },
+    "genre_safeguards": {
+      "horror_balance": [
+        "Willpower Tests always required when Sanity degrades (no auto-fail, but escalating TN)",
+        "Critical failures (2D6=2) on Willpower/Investigation trigger immediate Sanity loss",
+        "Wealth cannot purchase supernatural protection (e.g., 'buying immunity to Deep One influence')",
+        "No Attribute can exceed 5 – cosmic horror humbles even experts"
+      ],
+      "agency_preservation": [
+        "Player wins all ties in Challenges (preserves agency against cosmic indifference)",
+        "Minimum TN never exceeds 16 (no 'unwinnable' Tests)",
+        "Critical successes (2D6=12) grant narrative advantage even on TN 16+ failure"
+      ]
+    }
+  }
+}
