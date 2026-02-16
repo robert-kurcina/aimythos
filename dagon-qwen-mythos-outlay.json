@@ -27,7 +27,8 @@
           "NPC secrets/motivations beyond surface presentation",
           "Ecological corruption vectors beyond visible anomalies",
           "Victory condition dependencies on hidden mechanics",
-          "Any field in scenario JSON containing 'secret', 'transformation', 'hybrid', 'bloodline', 'cult' as primary descriptor"
+          "Any field in scenario JSON containing 'secret', 'transformation', 'hybrid', 'bloodline', 'cult' as primary descriptor",
+          "NEVER describe the scenario with any phrasings which reveal the plot or mystery elements."
         ],
         "during_game_until_earned": [
           "Transformation stage progression unless player observes physical changes in mirror/reflection",
