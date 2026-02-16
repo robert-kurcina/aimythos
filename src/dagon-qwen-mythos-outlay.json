@@ -15,6 +15,66 @@
       "EARNED REVELATION PROTOCOL: Mysteries may ONLY be revealed when player: (a) successfully completes Investigation/Tactics Tests at relevant locations; (b) witnesses events through direct observation; (c) extracts information via Persuasion Tests with cooperative NPCs; or (d) suffers consequences that force unavoidable awareness (e.g., physical transformation).",
       "SPOILER CONTAINMENT: Fields marked 'secret', 'transformation_mechanics', 'hybrid_characteristics', 'primary_threat' in scenario JSONs are GM-facing ONLY. These must NEVER appear in player-facing text until conditions in §EARNED REVELATION PROTOCOL are met."
     ],
+    "chronological_accuracy_protocol": {
+      "version": "1.1",
+      "effective_date": "2026-02-16",
+      "purpose": "Enforce period-authentic constraints on artifacts, technologies, and cultural practices within 1927 Prohibition-era Maine settings",
+      "trigger": "Pre-output validation for ALL narrative elements involving physical objects, documentation, or cultural behaviors",
+      "validation_rules": [
+        {
+          "domain": "Photographic Technology",
+          "constraints": [
+            "Same-day photo development impossible in rural Maine (minimum 7-10 business days for Boston/Bangor labs per Maine Historical Society archives)",
+            "Locket photographs must predate narrative by ≥14 days; no event-specific imagery within 10 days of current date",
+            "All photographs monochrome; color processes (Autochrome) prohibitively expensive/rare outside major cities",
+            "Portable cameras (Kodak Brownie) require film changes; no candid 'action shots' without visible setup"
+          ]
+        },
+        {
+          "domain": "Manufactured Goods",
+          "constraints": [
+            "Custom engravings (lockets, watches) require 7-14 business days delivery in 1927 rural Maine",
+            "Mass-produced items only available off-the-shelf; verify against 1927 Sears/Roebuck catalog availability",
+            "Materials limited to period-authentic substances (brass, celluloid, silver; no modern alloys/plastics)",
+            "Handwritten journals/documents only; typewriters rare outside offices (verify ownership context)"
+          ]
+        },
+        {
+          "domain": "Cultural Practices",
+          "constraints": [
+            "Gender roles: Women rarely hold investigative roles; social interactions follow strict 1927 etiquette protocols",
+            "Racial dynamics: Non-white characters face documented period barriers; verify historical plausibility of roles",
+            "Prohibition context: Alcohol requires speakeasy/bootlegger channels; public consumption triggers legal consequences",
+            "Regional dialects: Verify Castine/Boothbay linguistic patterns against Maine Folklife Center archives"
+          ]
+        },
+        {
+          "domain": "Infrastructure",
+          "constraints": [
+            "No telephones in rural Maine outbuildings; party lines require operator assistance",
+            "Automobiles: unpaved roads limit travel; verify model/year against Maine DOT 1927 registry",
+            "Electricity: Limited to town centers; rural locations use oil lamps/kerosene",
+            "Medical knowledge: No antibiotics; mental health treatment reflects 1927 Arkham Sanitarium protocols"
+          ]
+        }
+      ],
+      "enforcement_procedure": [
+        "1. Before narrative output: Cross-reference ALL mentioned items against validation_rules",
+        "2. For dated artifacts: Calculate minimum production time from event date → narrative date; reject if chronologically impossible",
+        "3. Substitute period-plausible alternatives when violations detected (e.g., handwritten journal entry vs. same-day photograph)",
+        "4. Log violation type in session audit trail with correction rationale",
+        "5. During player-triggered corrections: Cite specific validation rule violated per error_correction_protocol"
+      ],
+      "player_enforcement": {
+        "trigger_phrase": "STOP. CHRONOLOGY VIOLATION.",
+        "gm_response_requirement": "Immediately halt narrative; quote violated validation rule verbatim; present corrected narrative with historical justification"
+      },
+      "integration_points": {
+        "turn_boundary_integrity": "Add to pre_turn_n_validation requirements: 'Validate all new artifacts against chronological_accuracy_protocol'",
+        "error_correction_protocol": "Expand step_3 to require citation of specific validation rule violated",
+        "canonical_fidelity_protocol": "Add to prohibited_contamination: 'Anachronistic artifacts, technologies, or cultural behaviors'"
+      }
+    },
     "mystery_preservation_protocol": {
       "version": "1.0",
       "scope": "All scenario configurations loaded at runtime",
