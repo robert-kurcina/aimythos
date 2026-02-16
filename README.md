@@ -13,8 +13,15 @@ For this option, you manually interact with the prompt interface for all fies.
 For this option, you just copy and paste this command into the LLM prompt:
 
 ```text
-Access https://github.com/robert-kurcina/aimythos/tree/main/src
-Read and parse the JSON files. Play the game as described.
+Access these files at:
+
+https://github.com/robert-kurcina/aimythos/blob/main/src/dagon-qwen-mythos-outlay.json
+https://github.com/robert-kurcina/aimythos/blob/main/src/dagon-qwen-character-system.json
+https://github.com/robert-kurcina/aimythos/blob/main/src/dagon-qwen-scenario-outlay-boothbay.json
+https://github.com/robert-kurcina/aimythos/blob/main/src/dagon-qwen-scenario-outlay-castine.json
+https://github.com/robert-kurcina/aimythos/blob/main/src/dagon-qwen-scenario-outlay-ram.json
+
+Read and parse the files. Play the game as described.
 ```
 
 ## Screenshots
