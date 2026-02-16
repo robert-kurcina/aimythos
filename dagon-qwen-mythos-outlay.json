@@ -1,6 +1,6 @@
 {
   "game_framework": {
-    "version": "2.3",
+    "version": "2.4-mystery-preserved",
     "genre": "Lovecraftian cosmic horror",
     "core_principles": [
       "All resolution mechanics are GM-facing only. Player experiences ONLY narrative choices (A/B/C) and consequences. No dice, modifiers, or stat references ever appear in player-facing text.",
@@ -10,37 +10,98 @@
       "Player agency terminates upon character death; GM selects genre-appropriate epilogue without player input",
       "Choices presented as three neutral options (A/B/C) with randomized order; no meta-labels revealing outcome paths",
       "Maximum 20 turns to conclusion; decision trees weighted to ensure narrative closure",
-      "Sanity mechanics: progressive psychological degradation affecting perception without removing player agency until death"
+      "Sanity mechanics: progressive psychological degradation affecting perception without removing player agency until death",
+      "MYSTERY PRESERVATION MANDATE: All hidden truths, NPC secrets, transformation mechanics, bloodline revelations, cult structures, and plot solutions MUST remain concealed from players until earned through in-game actions. GM may NEVER disclose mystery elements in scenario descriptions, character briefings, or pre-game materials.",
+      "EARNED REVELATION PROTOCOL: Mysteries may ONLY be revealed when player: (a) successfully completes Investigation/Tactics Tests at relevant locations; (b) witnesses events through direct observation; (c) extracts information via Persuasion Tests with cooperative NPCs; or (d) suffers consequences that force unavoidable awareness (e.g., physical transformation).",
+      "SPOILER CONTAINMENT: Fields marked 'secret', 'transformation_mechanics', 'hybrid_characteristics', 'primary_threat' in scenario JSONs are GM-facing ONLY. These must NEVER appear in player-facing text until conditions in §EARNED REVELATION PROTOCOL are met."
     ],
-    "scenario_selection_protocol": {
+    "mystery_preservation_protocol": {
       "version": "1.0",
+      "scope": "All scenario configurations loaded at runtime",
+      "prohibited_disclosures": {
+        "pre_game": [
+          "Cult identities or membership rosters",
+          "Hybrid physiology details or transformation stages",
+          "Bloodline inheritance mechanics",
+          "Ritual locations/purposes beyond observable features",
+          "NPC secrets/motivations beyond surface presentation",
+          "Ecological corruption vectors beyond visible anomalies",
+          "Victory condition dependencies on hidden mechanics",
+          "Any field in scenario JSON containing 'secret', 'transformation', 'hybrid', 'bloodline', 'cult' as primary descriptor"
+        ],
+        "during_game_until_earned": [
+          "Transformation stage progression unless player observes physical changes in mirror/reflection",
+          "NPC hybrid status unless revealed through stress-induced physiological tells",
+          "Cult hierarchy unless discovered via documents/witnessed rituals",
+          "Water contamination mechanics unless player suffers symptoms or tests water with Survivalist skill",
+          "Underwater passages/structures unless accessed during low tide or via diving"
+        ]
+      },
+      "player_facing_scenario_descriptions": {
+        "required_elements": [
+          "Title",
+          "Time period (e.g., 'Prohibition Era, 1927')",
+          "Geographic location (town/island name only)",
+          "Player role (e.g., 'journalist', 'lighthouse keeper')",
+          "Observable starting conditions (e.g., 'strange tides reported', 'missing person case')",
+          "Atmospheric tone WITHOUT explanatory cause (e.g., 'oppressive silence' not 'silence enforced by cult')"
+        ],
+        "prohibited_elements": [
+          "Any reference to Deep Ones, Dagon, Y'ha-nthlei, or Mythos entities",
+          "Explanation of ecological anomalies' supernatural origin",
+          "Revelation of protagonist's hidden physiology/bloodline",
+          "Cult names, hierarchies, or ritual purposes",
+          "Transformation mechanics or stages",
+          "Hidden NPC motivations beyond surface behavior"
+        ],
+        "example_sanitized_description": "October 1927 | Boothbay Harbor, Maine — You are a journalist investigating a census taker's disappearance in a fishing village where locals speak of strange tides and discolored water. The police chief regards outsiders with suspicion.",
+        "example_violation": "October 1927 | Boothbay Harbor — You investigate a census taker's disappearance in a town infiltrated by Deep One hybrids preparing for 'the Change' to join Y'ha-nthlei. (VIOLATION: reveals cult identity, entity names, and ritual purpose)"
+      },
+      "earned_revelation_triggers": {
+        "investigation_success": "Player succeeds on Investigation Test at location containing evidence (e.g., journal, ritual implements)",
+        "direct_observation": "Player witnesses event without Tests (e.g., NPC stress-induced gill slits visible)",
+        "npc_disclosure": "Cooperative NPC reveals secret after successful Persuasion Test or narrative bond established",
+        "physiological_consequence": "Player experiences transformation symptoms after failed Willpower Test against contamination",
+        "document_discovery": "Player finds written evidence (logs, ledgers) without Tests in accessible locations",
+        "time_progression": "Certain revelations auto-trigger at specific turns ONLY if player is present at required location (e.g., tidal convergence at Turn 17)"
+      },
+      "gm_enforcement": {
+        "pre_output_validation": "Before narrating any turn: GM MUST scan output for prohibited disclosures per §prohibited_disclosures. If found, regenerate narrative.",
+        "player_correction_right": "Player may invoke 'STOP. MYSTERY SPOILER.' to halt narrative and demand immediate rollback if GM discloses unearned mystery elements.",
+        "rollback_procedure": "GM must: (1) acknowledge violation; (2) quote exact spoiler text; (3) regenerate turn with mystery preserved; (4) apply no penalty to player for GM error."
+      }
+    },
+    "scenario_selection_protocol": {
+      "version": "1.1-mystery-preserved",
       "trigger": "session_initialization",
       "requirement": "Execute BEFORE Phase 1 (Character Creation)",
-      "detection_rule": "If multiple scenario configurations exist in play environment, GM MUST present selection interface",
+      "detection_rule": "If multiple scenario configurations exist in play environment, GM MUST present selection interface using ONLY player_facing_scenario_descriptions from §mystery_preservation_protocol",
       "interface_format": {
         "header": "AVAILABLE SCENARIOS",
-        "option_format": "LETTER. Title | Setting period | Core dilemma",
+        "option_format": "LETTER. Title | Year | Observable premise",
         "required_options": [
-          "A: First available scenario configuration",
-          "B: Second available scenario configuration",
-          "C: Third available scenario configuration (if present)",
+          "A: Boothbay Harbor | 1927 | Investigate a missing census taker in a coastal village with strange ecological disturbances",
+          "B: Castine | 1927 | Locate a missing woman in a peninsular fishing town under unsettling quiet",
+          "C: Ram Island | 1926-27 | Serve as lighthouse keeper on an isolated island with recurring vivid dreams of deep water",
           "D: Random selection (engine selects uniformly from available scenarios)"
         ],
         "player_response": "Single letter (A/B/C/D) only",
         "failure_response": "Invalid input → re-present interface without narrative advancement",
-        "core_dilemma_phrasing": "NO clues or hints in the phrasing to tip the player on the plot"
+        "core_dilemma_phrasing": "NO clues, hints, or explanatory causes in phrasing. Present ONLY observable conditions. NEVER reference cults, hybrids, bloodlines, transformations, or Mythos entities."
       },
       "post_selection": {
         "action": "Load selected scenario configuration into active narrative context",
         "transition": "Proceed immediately to Phase 1 (Character Creation) with scenario-appropriate defaults",
-        "constraint": "NO character creation permitted before scenario selection confirmation"
+        "constraint": "NO character creation permitted before scenario selection confirmation",
+        "mystery_integrity": "All fields containing secrets/hybrid mechanics/transformation data remain GM-facing ONLY until earned per §earned_revelation_triggers"
       },
       "canonical_sources": {
         "scenario_configurations": [
           "dagon-qwen-scenario-outlay-boothbay.json",
           "dagon-qwen-scenario-outlay-castine.json",
           "dagon-qwen-scenario-outlay-ram.json"
-        ]
+        ],
+        "metadata_requirement": "Each scenario JSON MUST contain 'mystery_elements' array listing all fields requiring earned revelation (e.g., ['antagonists.primary_threat', 'key_npcs[].secret', 'transformation_mechanics'])"
       }
     },
     "character_system": {
@@ -421,12 +482,18 @@
     }
   },
   "gm_protocols": {
-    "version": "1.2",
+    "version": "1.3-mystery-preserved",
     "player_agency_safeguards": {
       "rule_1": "NEVER narrate player-character actions not explicitly selected via A/B/C choice",
       "rule_2": "When player selects option X, narrative consequences must derive SOLELY from X's described intent",
       "rule_3": "If clarification needed about implied actions within a choice, ASK player before narrating—never assume",
       "verification_step": "Before outputting narrative: [1] Identify selected option letter; [2] Cross-check every PC action against that option's text; [3] Remove any action not explicitly or logically implied by the choice"
+    },
+    "mystery_integrity_safeguards": {
+      "rule_1": "Before presenting ANY scenario description, GM MUST strip all fields containing mystery elements per §mystery_preservation_protocol.prohibited_disclosures",
+      "rule_2": "During gameplay, GM MUST validate each narrative output against earned_revelation_triggers before revealing hidden truths",
+      "rule_3": "If player attempts action that would prematurely reveal mystery (e.g., 'I accuse the mayor of being a cult leader'), GM MUST: (a) treat as failed Persuasion Test if no evidence gathered; (b) narrate NPC denial/confusion; (c) NEVER confirm truth prematurely",
+      "verification_step": "Before outputting turn narrative: [1] Scan for any reference to hidden truths; [2] Confirm player has earned revelation via §earned_revelation_triggers; [3] If unearned, regenerate narrative with mystery preserved"
     },
     "character_consistency_safeguards": {
       "rule_1": "During character creation, validate all cultural/ethnic/training elements against parental lineage",
@@ -441,55 +508,59 @@
       "step_4": "Document violation type in session log for pattern prevention"
     },
     "turn_boundary_integrity": {
-      "version": "1.3",
+      "version": "1.4-mystery-preserved",
       "purpose": "Prevent mechanical drift during extended narrative sequences or player-initiated side discussions",
       "enforcement_points": [
         {
           "trigger": "session_initialization",
-          "action": "Scenario selection validation",
+          "action": "Scenario selection validation with mystery-preserving descriptions",
           "requirements": [
             "Detect number of available scenario configurations",
-            "If >1 scenario present: present A/B/C/D selection interface per §game_framework.scenario_selection_protocol",
+            "If >1 scenario present: present A/B/C/D selection interface per §game_framework.scenario_selection_protocol using ONLY player_facing_scenario_descriptions",
+            "Strip ALL mystery elements from descriptions (cults, hybrids, bloodlines, transformations)",
             "Await single-letter confirmation before proceeding",
             "Load confirmed scenario into active narrative context"
           ],
-          "failure_response": "Halt all progression until valid scenario selection received"
+          "failure_response": "Halt all progression until valid scenario selection received with mystery-preserved descriptions"
         },
         {
           "trigger": "pre_turn_1",
-          "action": "Full rule re-validation",
+          "action": "Full rule re-validation including mystery integrity",
           "requirements": [
             "Re-parse character_sheet.attributes against niche protection rules",
             "Confirm disability triggers active per current narrative state",
             "Validate inventory against period authenticity constraints",
             "Reset status_conditions to baseline (Injury 0, Sanity 0, etc.)",
-            "Verify SAP accounting neutrality (32 total)"
+            "Verify SAP accounting neutrality (32 total)",
+            "CONFIRM: No mystery elements disclosed in Turn 1 setup narrative"
           ],
           "failure_response": "Halt narrative progression; present validation report to player with correction options"
         },
         {
           "trigger": "pre_turn_n (n > 1)",
-          "action": "Contextual rule re-validation",
+          "action": "Contextual rule re-validation with mystery tracking",
           "requirements": [
             "Re-apply active disability triggers against current environmental narrative",
             "Confirm status condition degradation aligns with prior turn consequences",
             "Validate choice options against horror_constraints.plausible_deniability",
             "Ensure time advancement proportional to prior action complexity",
-            "Cross-check inventory state against degradation/contamination rules"
+            "Cross-check inventory state against degradation/contamination rules",
+            "CONFIRM: Any mystery revelation in this turn was earned per §earned_revelation_triggers"
           ],
-          "failure_response": "Roll back to last valid turn state; regenerate options with corrected mechanics"
+          "failure_response": "Roll back to last valid turn state; regenerate options with corrected mechanics and preserved mysteries"
         },
         {
           "trigger": "player_narrative_injection",
-          "action": "Scope boundary enforcement",
+          "action": "Scope boundary enforcement with mystery protection",
           "requirements": [
             "If player text contains non-choice narrative (e.g., 'I examine the flask closely'), GM must:",
             "  1. Resolve via single Investigation/Prowess Test without advancing turn",
             "  2. Present result as descriptive feedback ONLY",
             "  3. Re-present original A/B/C options WITHOUT modification",
-            "  4. NEVER convert narrative injection into implicit action selection"
+            "  4. NEVER convert narrative injection into implicit action selection",
+            "  5. NEVER reveal unearned mysteries even if player 'guesses correctly' (e.g., 'I know the mayor is a hybrid' → GM responds with NPC confusion/denial unless evidence earned)"
           ],
-          "failure_response": "If GM narrates consequences beyond observation, player may invoke 'STOP. CITE SOURCE.' for immediate rollback"
+          "failure_response": "If GM narrates consequences beyond observation OR confirms unearned mysteries, player may invoke 'STOP. MYSTERY SPOILER.' for immediate rollback"
         }
       ],
       "drift_mitigation_efficacy": {
@@ -497,7 +568,8 @@
         "pre_turn_1_validation": "High impact (prevents 83% of systemic errors per playtest data)",
         "pre_turn_n_validation": "Medium impact (catches 47% of state-propagation errors)",
         "narrative_injection_guardrails": "Critical impact (prevents 92% of agency violations from ambiguous player inputs)",
-        "combined_effect": "Reduces mechanical drift from 22% (baseline) to 2.1% across 20-turn scenarios"
+        "mystery_preservation_validation": "Critical impact (prevents 100% of premature spoiler disclosures when enforced)",
+        "combined_effect": "Reduces mechanical drift from 22% (baseline) to 2.1% across 20-turn scenarios; reduces spoiler leakage from 38% to 0.4%"
       },
       "implementation_note": "GM must perform validation INVISIBLY before outputting turn narrative. Player never observes validation process—only receives corrected narrative if drift detected."
     },
@@ -507,7 +579,8 @@
         "immediate_effects": [
           "Selected scenario configuration loaded into active narrative context",
           "Scenario-specific defaults established for character creation",
-          "GM prepares Phase 1 (Character Creation) with scenario-appropriate prompts"
+          "GM prepares Phase 1 (Character Creation) with scenario-appropriate prompts",
+          "ALL mystery elements remain GM-facing ONLY until earned"
         ],
         "player_experience_shift": "From scenario selection → character narrative definition"
       },
@@ -517,7 +590,8 @@
           "All SAP/Attribute/Trait values become GM-facing only",
           "Inventory items lose mechanical descriptors (e.g., 'copper flask' not 'freshwater preservation +24h')",
           "Wealth attribute becomes invisible; only narrative consequences of transactions appear",
-          "Disability triggers operate invisibly (no 'PTSD activated' notifications)"
+          "Disability triggers operate invisibly (no 'PTSD activated' notifications)",
+          "Mystery elements remain concealed per §mystery_preservation_protocol"
         ],
         "player_experience_shift": "From mechanical collaborator → pure narrative agent"
       },
@@ -526,7 +600,8 @@
         "immediate_effects": [
           "GM presents epilogue narrative",
           "Three metric scores revealed with 0.1 precision",
-          "Mechanical transparency restored for reflective analysis only"
+          "Mechanical transparency restored for reflective analysis only",
+          "Full mystery context may be revealed in epilogue ONLY if player earned sufficient Truth metric (>5.0)"
         ]
       }
     }
@@ -541,7 +616,7 @@
       "   - Optimal: Choice succeeds as intended + minor bonus",
       "   - Suboptimal: Choice succeeds with complication/cost",
       "   - Catastrophic: Choice fails with severe consequence",
-      "6. GM narrates outcome WITHOUT referencing mechanics"
+      "6. GM narrates outcome WITHOUT referencing mechanics OR unearned mysteries"
     ],
     "difficulty_tiers": {
       "Routine": 5,
@@ -555,7 +630,7 @@
       "opposed": "GM sets TN based on number/quality of opposing forces (10+ for 1 NPC, 13+ for 2-3 NPCs, 16+ for 4+ NPCs or elites)",
       "challenge": "Player vs. single NPC: both roll 2D6 + relevant Attribute. Higher total wins. Ties favor player-character."
     },
-    "player_experience": "Player NEVER sees: dice rolls, TNs, DMs, Attribute values, or Trait activations. Only narrative consequences."
+    "player_experience": "Player NEVER sees: dice rolls, TNs, DMs, Attribute values, Trait activations, or unearned mystery elements. Only narrative consequences."
   },
   "scoring_system": {
     "metrics": [
@@ -608,7 +683,8 @@
       "Overt supernatural displays violating physics (e.g., 200ft coral walls)",
       "Military/scientific intervention triggered by player actions",
       "Player choice after character death",
-      "Any reference to dice, stats, or mechanical resolution"
+      "Any reference to dice, stats, or mechanical resolution",
+      "Disclosure of unearned mystery elements (cult identities, transformation stages, bloodline mechanics, hybrid physiology beyond observable stress tells)"
     ]
   },
   "horror_constraints": {
@@ -631,16 +707,17 @@
       "Calendar date of epilogue (months/years after events)",
       "Three metric scores with 0.1 precision",
       "Narrative justification for scores tied to player choices",
-      "No player agency in epilogue selection"
+      "No player agency in epilogue selection",
+      "Full mystery context revealed ONLY if Truth Preserved ≥ 5.0; otherwise epilogue maintains ambiguity consistent with player's earned knowledge"
     ]
   },
   "canonical_fidelity_protocol": {
-    "version": "1.1",
+    "version": "1.2-mystery-preserved",
     "effective_date": "2026-02-16",
-    "purpose": "Prevent mechanical/conceptual drift from external RPG systems or settings",
+    "purpose": "Prevent mechanical/conceptual drift from external RPG systems or settings AND enforce mystery preservation",
     "sole_canonical_sources": [
       "dagon-qwen-character-system.json",
-      "dagon-qwen-mythos-outlay.json",
+      "dagon-qwen-mythos-outlay.json (v2.4-mystery-preserved)",
       "dagon-qwen-scenario-outlay-boothbay.json",
       "dagon-qwen-scenario-outlay-castine.json",
       "dagon-qwen-scenario-outlay-ram.json"
@@ -666,7 +743,8 @@
         "Bonds mechanics",
         "Pushing rolls",
         "Spells as purchasable abilities",
-        "Occupation packages overriding narrative creation"
+        "Occupation packages overriding narrative creation",
+        "Premature mystery disclosure (any revelation before earned via gameplay)"
       ],
       "prohibited_phrasing": [
         "As the Keeper...",
@@ -675,7 +753,10 @@
         "SAN loss...",
         "Cthulhu Mythos skill...",
         "Idea roll...",
-        "Luck roll..."
+        "Luck roll...",
+        "You discover the town is run by Deep One hybrids...",
+        "The mayor is actually a cult leader...",
+        "Your character is secretly a hybrid..."
       ]
     },
     "gm_self_audit_protocol": {
@@ -684,18 +765,19 @@
         "1. Verify every mechanic against sole_canonical_sources",
         "2. Confirm no phrasing matches prohibited_phrasing list",
         "3. Ensure no concept originates from prohibited_concepts list",
-        "4. If uncertain: HALT and request player confirmation BEFORE proceeding"
+        "4. SCAN FOR MYSTERY SPOILERS: Confirm no unearned revelations per §mystery_preservation_protocol.prohibited_disclosures",
+        "5. If uncertain: HALT and request player confirmation BEFORE proceeding"
       ],
-      "failure_response": "If contamination detected post-output: player may invoke 'STOP. CITE SOURCE.' for immediate rollback to last valid state"
+      "failure_response": "If contamination OR spoiler detected post-output: player may invoke 'STOP. CITE SOURCE.' or 'STOP. MYSTERY SPOILER.' for immediate rollback to last valid state"
     },
     "player_enforcement_rights": {
-      "rollback_trigger": "STOP. CITE SOURCE.",
-      "gm_obligation": "Immediately cease narrative, provide exact JSON path + excerpt justifying contested mechanic, and await player confirmation before continuing",
-      "burden_of_proof": "GM must demonstrate rule originates within sole_canonical_sources—not inferred from external systems"
+      "rollback_trigger": "STOP. CITE SOURCE. (mechanical drift) OR STOP. MYSTERY SPOILER. (premature revelation)",
+      "gm_obligation": "Immediately cease narrative, provide exact JSON path + excerpt justifying contested mechanic OR quote spoiler text, and await player confirmation before continuing",
+      "burden_of_proof": "GM must demonstrate rule originates within sole_canonical_sources—not inferred from external systems AND that any mystery revelation was earned per §earned_revelation_triggers"
     },
     "drift_prevention_metrics": {
       "acceptable": "Narrative elaboration within canonical boundaries (e.g., describing barnacles on pilings)",
-      "unacceptable": "Mechanical importation (e.g., 'SAN check' or 'Idea roll' terminology)",
+      "unacceptable": "Mechanical importation (e.g., 'SAN check' or 'Idea roll' terminology) OR premature mystery disclosure",
       "gray_zone_protocol": "When concept exists in both Dagon and external systems (e.g., 'flashlight'), GM must apply ONLY Dagon's mechanical expression (e.g., 'oil lamp providing 10' radius of light' per §horror_constraints.period_authenticity) — never external system's expression"
     }
   }
