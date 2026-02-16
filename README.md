@@ -15,11 +15,11 @@ For this option, you just copy and paste this command into the LLM prompt:
 ```text
 Access these files at:
 
-https://github.com/robert-kurcina/aimythos/blob/main/src/dagon-qwen-mythos-outlay.json
-https://github.com/robert-kurcina/aimythos/blob/main/src/dagon-qwen-character-system.json
-https://github.com/robert-kurcina/aimythos/blob/main/src/dagon-qwen-scenario-outlay-boothbay.json
-https://github.com/robert-kurcina/aimythos/blob/main/src/dagon-qwen-scenario-outlay-castine.json
-https://github.com/robert-kurcina/aimythos/blob/main/src/dagon-qwen-scenario-outlay-ram.json
+https://raw.githubusercontent.com/robert-kurcina/aimythos/refs/heads/main/src/dagon-qwen-mythos-outlay.json
+https://raw.githubusercontent.com/robert-kurcina/aimythos/refs/heads/main/src/dagon-qwen-character-system.json
+https://raw.githubusercontent.com/robert-kurcina/aimythos/refs/heads/main/src/dagon-qwen-scenario-outlay-ram.json
+https://raw.githubusercontent.com/robert-kurcina/aimythos/refs/heads/main/src/dagon-qwen-scenario-outlay-castine.json
+https://raw.githubusercontent.com/robert-kurcina/aimythos/refs/heads/main/src/dagon-qwen-scenario-outlay-boothbay.json
 
 Read and parse the files. Play the game as described.
 ```
