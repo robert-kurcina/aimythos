@@ -18,7 +18,7 @@ Read and parse the JSON files. Play the game as described.
 ```
 
 ## Screenshots
-![Overview](/src/overview.png)
+![Overview](img/overview.png)
 
-![Scenarios](/src/scenarios.png)
+![Scenarios](img/scenarios.png)
 
